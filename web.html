@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hola Mariagna</title>
+    <style>
+        body {
+            background-color: rgba(240, 240, 240, 1); /* Fondo inicial */
+            text-align: center;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 2s ease, color 2s ease; /* Transición de 2 segundos */
+        }
+
+        #playButton,
+        #newPlayButton {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            border: none;
+            margin-top: 20px;
+            transition: background-color 0.5s ease; /* Transición de 0.5 segundos */
+        }
+
+        #playButton img,
+        #newPlayButton img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+
+        #playButton:hover img,
+        #newPlayButton:hover img {
+            filter: grayscale(0%) brightness(50%);
+        }
+
+        #playButton:hover,
+        #newPlayButton:hover {
+            background-color: #45a049;
+        }
+
+        #thanksTextContainer,
+        #newMessageContainer,
+        #finalMessageContainer {
+            opacity: 0;
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: opacity 2s ease, margin-top 2s ease;
+        }
+
+        #thanksText,
+        #newMessage,
+        #finalMessage {
+            font-size: 20px;
+            line-height: 1.5;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hola Mariagna</h1>
+    <button id="playButton" onclick="playAudio()">
+        <img src="https://img.icons8.com/material-outlined/48/000000/circled-play--v2.png" alt="Reproducir">
+    </button>
+    <audio id="audioPlayer" loop>
+        <source src="C:\Users\DELL\Downloads\pagina\cancion.mp3" type="audio/mp3">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <div id="thanksTextContainer">
+        <p id="thanksText">Solo quería agradecerte de esta forma, quizás un poco creativa.<br>
+        Me gustó hacer esto yo mismo y pensé que sería una buena idea enseñarte el resultado.<br>
+        No sé mucho de programación de todos modos.</p>
+    </div>
+
+    <script>
+        function playAudio() {
+            var audio = document.getElementById("audioPlayer");
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+                audio.currentTime = 0;
+            }
+        }
+
+        // Cambiar fondo y color gradualmente al pasar 2 segundos
+        setTimeout(function () {
+            document.body.style.backgroundColor = 'rgba(0, 0, 0, 1)'; /* Cambio a negro */
+            document.body.style.color = 'white';
+
+            // Mostrar el primer mensaje de agradecimiento después de 2 segundos
+            setTimeout(function () {
+                var thanksTextContainer = document.getElementById("thanksTextContainer");
+                thanksTextContainer.style.opacity = 1;
+                thanksTextContainer.style.marginTop = 0;
+            }, 2000);
+
+            // Mostrar el segundo mensaje después de 2 segundos adicionales
+            setTimeout(function () {
+                var newMessageContainer = document.getElementById("newMessageContainer");
+                newMessageContainer.style.opacity = 1;
+                newMessageContainer.style.marginTop = 0;
+            }, 4000);
+
+            // Mostrar el tercer mensaje y el nuevo botón después de 3 segundos adicionales
+            setTimeout(function () {
+                var finalMessageContainer = document.getElementById("finalMessageContainer");
+                finalMessageContainer.style.opacity = 1;
+                finalMessageContainer.style.marginTop = 0;
+
+                var newPlayButton = document.getElementById("newPlayButton");
+                newPlayButton.style.display = "block";
+
+                // Agregar el mensaje adicional después de 5 segundos
+                setTimeout(function () {
+                    var additionalMessage = document.createElement("p");
+                    additionalMessage.innerHTML = "¿No es esto tan divertido? jajaj";
+                    additionalMessage.style.fontSize = "20px";
+                    additionalMessage.style.lineHeight = "1.5";
+                    additionalMessage.style.textAlign = "center";
+                    additionalMessage.style.marginTop = "20px";
+                    finalMessageContainer.appendChild(additionalMessage);
+                }, 5000);
+            }, 7000);
+        }, 2000);
+    </script>
+
+    <div id="newMessageContainer">
+        <p id="newMessage">En fin, muchas gracias por ser mi amiga.<br>
+        Ahora hay una sorpresa, las canciones instrumentales a veces aburren, así que vamos a poner tu canción favorita.</p>
+    </div>
+
+    <div id="finalMessageContainer">
+        <!-- Eliminado el texto adicional -->
+        <button id="newPlayButton" onclick="playNewAudio()">
+            <img src="https://img.icons8.com/material-outlined/48/000000/circled-play--v2.png" alt="Reproducir">
+        </button>
+    </div>
+
+    <audio id="newAudioPlayer" loop>
+        <source src="C:\Users\DELL\Downloads\pagina\iris.mp3" type="audio/mp3">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <script>
+        function playNewAudio() {
+            var audio = document.getElementById("audioPlayer");
+            var newAudio = document.getElementById("newAudioPlayer");
+            
+            // Detener la primera canción
+            audio.pause();
+            audio.currentTime = 0;
+            
+            // Reproducir la segunda canción
+            if (newAudio.paused) {
+                newAudio.play();
+            } else {
+                newAudio.pause();
+                newAudio.currentTime = 0;
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
