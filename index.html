@@ -6,11 +6,11 @@
     <title>Hola Mariagna</title>
     <style>
         body {
-            background-color: rgba(240, 240, 240, 1);
+            background-color: rgba(240, 240, 240, 1); /* Fondo inicial */
             text-align: center;
             padding: 20px;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            transition: background-color 2s ease, color 2s ease;
+            transition: background-color 2s ease, color 2s ease; /* Transición de 2 segundos */
         }
 
         #playButton,
@@ -23,7 +23,7 @@
             border-radius: 8px;
             border: none;
             margin-top: 20px;
-            transition: background-color 0.5s ease;
+            transition: background-color 0.5s ease; /* Transición de 0.5 segundos */
         }
 
         #playButton img,
@@ -71,7 +71,7 @@
         <img src="https://img.icons8.com/material-outlined/48/000000/circled-play--v2.png" alt="Reproducir">
     </button>
     <audio id="audioPlayer" loop>
-        <source src="cancion.mp3" type="audio/mp3">
+        <source src="https://joelcerrud2.github.io/mariagnaJ/cancion.mp3" type="audio/mp3">
         Tu navegador no soporta el elemento de audio.
     </audio>
 
@@ -84,46 +84,51 @@
     <script>
         function playAudio() {
             var audio = document.getElementById("audioPlayer");
-            var playButton = document.getElementById("playButton");
-
             if (audio.paused) {
                 audio.play();
-
-                // Ocultar el botón y mostrar los mensajes después de 2 segundos
-                setTimeout(function () {
-                    playButton.style.display = "none";
-
-                    var thanksTextContainer = document.getElementById("thanksTextContainer");
-                    thanksTextContainer.style.opacity = 1;
-                    thanksTextContainer.style.marginTop = 0;
-
-                    setTimeout(function () {
-                        var newMessageContainer = document.getElementById("newMessageContainer");
-                        newMessageContainer.style.opacity = 1;
-                        newMessageContainer.style.marginTop = 0;
-
-                        setTimeout(function () {
-                            var finalMessageContainer = document.getElementById("finalMessageContainer");
-                            finalMessageContainer.style.opacity = 1;
-                            finalMessageContainer.style.marginTop = 0;
-
-                            var newPlayButton = document.getElementById("newPlayButton");
-                            newPlayButton.style.display = "block";
-
-                            setTimeout(function () {
-                                var additionalMessage = document.createElement("p");
-                                additionalMessage.innerHTML = "¿No es esto tan divertido? jajaj";
-                                additionalMessage.style.fontSize = "20px";
-                                additionalMessage.style.lineHeight = "1.5";
-                                additionalMessage.style.textAlign = "center";
-                                additionalMessage.style.marginTop = "20px";
-                                finalMessageContainer.appendChild(additionalMessage);
-                            }, 5000);
-                        }, 3000);
-                    }, 2000);
-                }, 2000);
+                document.body.style.backgroundColor = 'rgba(0, 0, 0, 1)'; // Cambio a negro
+                document.body.style.color = 'white';
+            } else {
+                audio.pause();
+                audio.currentTime = 0;
             }
         }
+
+        var thanksTextContainer = document.getElementById("thanksTextContainer");
+        var newMessageContainer = document.getElementById("newMessageContainer");
+        var finalMessageContainer = document.getElementById("finalMessageContainer");
+
+        // Mostrar el primer mensaje de agradecimiento después de 2 segundos
+        setTimeout(function () {
+            thanksTextContainer.style.opacity = 1;
+            thanksTextContainer.style.marginTop = 0;
+        }, 2000);
+
+        // Mostrar el segundo mensaje después de 2 segundos adicionales
+        setTimeout(function () {
+            newMessageContainer.style.opacity = 1;
+            newMessageContainer.style.marginTop = 0;
+        }, 4000);
+
+        // Mostrar el tercer mensaje y el nuevo botón después de 3 segundos adicionales
+        setTimeout(function () {
+            finalMessageContainer.style.opacity = 1;
+            finalMessageContainer.style.marginTop = 0;
+
+            var newPlayButton = document.getElementById("newPlayButton");
+            newPlayButton.style.display = "block";
+
+            // Agregar el mensaje adicional después de 5 segundos
+            setTimeout(function () {
+                var additionalMessage = document.createElement("p");
+                additionalMessage.innerHTML = "¿No es esto tan divertido? jajaj";
+                additionalMessage.style.fontSize = "20px";
+                additionalMessage.style.lineHeight = "1.5";
+                additionalMessage.style.textAlign = "center";
+                additionalMessage.style.marginTop = "20px";
+                finalMessageContainer.appendChild(additionalMessage);
+            }, 5000);
+        }, 7000);
     </script>
 
     <div id="newMessageContainer">
@@ -132,20 +137,27 @@
     </div>
 
     <div id="finalMessageContainer">
+        <!-- Eliminado el texto adicional -->
         <button id="newPlayButton" onclick="playNewAudio()">
             <img src="https://img.icons8.com/material-outlined/48/000000/circled-play--v2.png" alt="Reproducir">
         </button>
     </div>
 
     <audio id="newAudioPlayer" loop>
-        <source src="iris.mp3" type="audio/mp3">
+        <source src="https://joelcerrud2.github.io/mariagnaJ/iris.mp3" type="audio/mp3">
         Tu navegador no soporta el elemento de audio.
     </audio>
 
     <script>
         function playNewAudio() {
+            var audio = document.getElementById("audioPlayer");
             var newAudio = document.getElementById("newAudioPlayer");
-
+            
+            // Detener la primera canción
+            audio.pause();
+            audio.currentTime = 0;
+            
+            // Reproducir la segunda canción
             if (newAudio.paused) {
                 newAudio.play();
             } else {
@@ -156,6 +168,7 @@
     </script>
 </body>
 </html>
+
 
 
 
