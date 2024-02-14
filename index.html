@@ -67,7 +67,7 @@
 </head>
 <body>
     <h1>Hola Mariagna</h1>
-    <button id="playButton" onclick="playAudio()">
+    <button id="playButton" onclick="initiateTransition()">
         <img src="https://img.icons8.com/material-outlined/48/000000/circled-play--v2.png" alt="Reproducir">
     </button>
     <audio id="audioPlayer" loop>
@@ -83,8 +83,8 @@
     </div>
 
     <script>
-        window.onload = function() {
-            // Cambiar fondo y color gradualmente al cargar la página
+        function initiateTransition() {
+            // Cambiar fondo y color gradualmente al hacer clic en el botón
             document.body.style.backgroundColor = 'rgba(0, 0, 0, 1)'; /* Cambio a negro */
             document.body.style.color = 'white';
 
@@ -94,43 +94,50 @@
                 thanksTextContainer.style.opacity = 1;
                 thanksTextContainer.style.marginTop = 0;
             }, 2000);
-        };
 
-        function playAudio() {
+            // Mostrar el segundo mensaje después de 2 segundos adicionales
+            setTimeout(function () {
+                var newMessageContainer = document.getElementById("newMessageContainer");
+                newMessageContainer.style.opacity = 1;
+                newMessageContainer.style.marginTop = 0;
+            }, 4000);
+
+            // Mostrar el tercer mensaje y el nuevo botón después de 3 segundos adicionales
+            setTimeout(function () {
+                var finalMessageContainer = document.getElementById("finalMessageContainer");
+                finalMessageContainer.style.opacity = 1;
+                finalMessageContainer.style.marginTop = 0;
+
+                var newPlayButton = document.getElementById("newPlayButton");
+                newPlayButton.style.display = "block";
+
+                // Agregar el mensaje adicional después de 5 segundos
+                setTimeout(function () {
+                    var additionalMessage = document.createElement("p");
+                    additionalMessage.innerHTML = "¿No es esto tan divertido? jajaj";
+                    additionalMessage.style.fontSize = "20px";
+                    additionalMessage.style.lineHeight = "1.5";
+                    additionalMessage.style.textAlign = "center";
+                    additionalMessage.style.marginTop = "20px";
+                    finalMessageContainer.appendChild(additionalMessage);
+                }, 5000);
+            }, 7000);
+        }
+
+        function playNewAudio() {
             var audio = document.getElementById("audioPlayer");
-            if (audio.paused) {
-                audio.play();
-
-                // Mostrar el segundo mensaje después de 2 segundos adicionales
-                setTimeout(function () {
-                    var newMessageContainer = document.getElementById("newMessageContainer");
-                    newMessageContainer.style.opacity = 1;
-                    newMessageContainer.style.marginTop = 0;
-                }, 4000);
-
-                // Mostrar el tercer mensaje y el nuevo botón después de 3 segundos adicionales
-                setTimeout(function () {
-                    var finalMessageContainer = document.getElementById("finalMessageContainer");
-                    finalMessageContainer.style.opacity = 1;
-                    finalMessageContainer.style.marginTop = 0;
-
-                    var newPlayButton = document.getElementById("newPlayButton");
-                    newPlayButton.style.display = "block";
-
-                    // Agregar el mensaje adicional después de 5 segundos
-                    setTimeout(function () {
-                        var additionalMessage = document.createElement("p");
-                        additionalMessage.innerHTML = "¿No es esto tan divertido? jajaj";
-                        additionalMessage.style.fontSize = "20px";
-                        additionalMessage.style.lineHeight = "1.5";
-                        additionalMessage.style.textAlign = "center";
-                        additionalMessage.style.marginTop = "20px";
-                        finalMessageContainer.appendChild(additionalMessage);
-                    }, 5000);
-                }, 7000);
+            var newAudio = document.getElementById("newAudioPlayer");
+            
+            // Detener la primera canción
+            audio.pause();
+            audio.currentTime = 0;
+            
+            // Reproducir la segunda canción
+            if (newAudio.paused) {
+                newAudio.play();
             } else {
-                audio.pause();
-                audio.currentTime = 0;
+                newAudio.pause();
+                newAudio.currentTime = 0;
             }
         }
     </script>
@@ -152,27 +159,9 @@
         <source src="iris.mp3" type="audio/mp3">
         Tu navegador no soporta el elemento de audio.
     </audio>
-
-    <script>
-        function playNewAudio() {
-            var audio = document.getElementById("audioPlayer");
-            var newAudio = document.getElementById("newAudioPlayer");
-            
-            // Detener la primera canción
-            audio.pause();
-            audio.currentTime = 0;
-            
-            // Reproducir la segunda canción
-            if (newAudio.paused) {
-                newAudio.play();
-            } else {
-                newAudio.pause();
-                newAudio.currentTime = 0;
-            }
-        }
-    </script>
 </body>
 </html>
+
 
 
 
