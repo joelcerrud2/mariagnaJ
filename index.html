@@ -6,11 +6,11 @@
     <title>Hola Mariagna</title>
     <style>
         body {
-            background-color: rgba(240, 240, 240, 1); /* Fondo inicial */
+            background-color: rgba(240, 240, 240, 1);
             text-align: center;
             padding: 20px;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            transition: background-color 2s ease, color 2s ease; /* Transición de 2 segundos */
+            transition: background-color 2s ease, color 2s ease;
         }
 
         #playButton,
@@ -23,7 +23,7 @@
             border-radius: 8px;
             border: none;
             margin-top: 20px;
-            transition: background-color 0.5s ease; /* Transición de 0.5 segundos */
+            transition: background-color 0.5s ease;
         }
 
         #playButton img,
@@ -67,11 +67,10 @@
 </head>
 <body>
     <h1>Hola Mariagna</h1>
-    <button id="playButton" onclick="playAudio()">
+    <button id="playButton" onclick="initiateTransition()">
         <img src="https://img.icons8.com/material-outlined/48/000000/circled-play--v2.png" alt="Reproducir">
     </button>
     <audio id="audioPlayer" loop>
-        <!-- Ruta relativa al archivo cancion.mp3 -->
         <source src="cancion.mp3" type="audio/mp3">
         Tu navegador no soporta el elemento de audio.
     </audio>
@@ -83,55 +82,45 @@
     </div>
 
     <script>
-        function playAudio() {
-            var audio = document.getElementById("audioPlayer");
-            if (audio.paused) {
-                audio.play();
+        function initiateTransition() {
+            // Cambiar fondo y color gradualmente
+            document.body.style.backgroundColor = 'rgba(0, 0, 0, 1)';
+            document.body.style.color = 'white';
 
-                // Cambiar fondo y color gradualmente al pasar 2 segundos
-                document.body.style.backgroundColor = 'rgba(0, 0, 0, 1)'; /* Cambio a negro */
-                document.body.style.color = 'white';
+            // Mostrar el primer mensaje después de 2 segundos
+            setTimeout(function () {
+                var thanksTextContainer = document.getElementById("thanksTextContainer");
+                thanksTextContainer.style.opacity = 1;
+                thanksTextContainer.style.marginTop = 0;
+            }, 2000);
 
-                // Mostrar el primer mensaje de agradecimiento después de 2 segundos
+            // Mostrar el segundo mensaje después de 2 segundos adicionales
+            setTimeout(function () {
+                var newMessageContainer = document.getElementById("newMessageContainer");
+                newMessageContainer.style.opacity = 1;
+                newMessageContainer.style.marginTop = 0;
+            }, 4000);
+
+            // Mostrar el tercer mensaje y el nuevo botón después de 3 segundos adicionales
+            setTimeout(function () {
+                var finalMessageContainer = document.getElementById("finalMessageContainer");
+                finalMessageContainer.style.opacity = 1;
+                finalMessageContainer.style.marginTop = 0;
+
+                var newPlayButton = document.getElementById("newPlayButton");
+                newPlayButton.style.display = "block";
+
+                // Agregar el mensaje adicional después de 5 segundos
                 setTimeout(function () {
-                    var thanksTextContainer = document.getElementById("thanksTextContainer");
-                    thanksTextContainer.style.opacity = 1;
-                    thanksTextContainer.style.marginTop = 0;
-                }, 2000);
-
-                // Mostrar el segundo mensaje después de 2 segundos adicionales
-                setTimeout(function () {
-                    var newMessageContainer = document.getElementById("newMessageContainer");
-                    newMessageContainer.style.opacity = 1;
-                    newMessageContainer.style.marginTop = 0;
-                }, 4000);
-
-                // Mostrar el tercer mensaje y el nuevo botón después de 3 segundos adicionales
-                setTimeout(function () {
-                    var finalMessageContainer = document.getElementById("finalMessageContainer");
-                    finalMessageContainer.style.opacity = 1;
-                    finalMessageContainer.style.marginTop = 0;
-
-                    var newPlayButton = document.getElementById("newPlayButton");
-                    newPlayButton.style.display = "block";
-
-                    // Agregar el mensaje adicional solo si no se ha agregado antes
-                    if (finalMessageContainer.getElementsByTagName("p").length === 0) {
-                        setTimeout(function () {
-                            var additionalMessage = document.createElement("p");
-                            additionalMessage.innerHTML = "¿No es esto tan divertido? jajaj";
-                            additionalMessage.style.fontSize = "20px";
-                            additionalMessage.style.lineHeight = "1.5";
-                            additionalMessage.style.textAlign = "center";
-                            additionalMessage.style.marginTop = "20px";
-                            finalMessageContainer.appendChild(additionalMessage);
-                        }, 5000);
-                    }
-                }, 7000);
-            } else {
-                audio.pause();
-                audio.currentTime = 0;
-            }
+                    var additionalMessage = document.createElement("p");
+                    additionalMessage.innerHTML = "¿No es esto tan divertido? jajaj";
+                    additionalMessage.style.fontSize = "20px";
+                    additionalMessage.style.lineHeight = "1.5";
+                    additionalMessage.style.textAlign = "center";
+                    additionalMessage.style.marginTop = "20px";
+                    finalMessageContainer.appendChild(additionalMessage);
+                }, 5000);
+            }, 7000);
         }
     </script>
 
@@ -141,14 +130,13 @@
     </div>
 
     <div id="finalMessageContainer">
-        <!-- Eliminado el texto adicional -->
+        <!-- Nuevo botón -->
         <button id="newPlayButton" onclick="playNewAudio()">
             <img src="https://img.icons8.com/material-outlined/48/000000/circled-play--v2.png" alt="Reproducir">
         </button>
     </div>
 
     <audio id="newAudioPlayer" loop>
-        <!-- Ruta relativa al archivo iris.mp3 -->
         <source src="iris.mp3" type="audio/mp3">
         Tu navegador no soporta el elemento de audio.
     </audio>
@@ -157,11 +145,11 @@
         function playNewAudio() {
             var audio = document.getElementById("audioPlayer");
             var newAudio = document.getElementById("newAudioPlayer");
-            
+
             // Detener la primera canción
             audio.pause();
             audio.currentTime = 0;
-            
+
             // Reproducir la segunda canción
             if (newAudio.paused) {
                 newAudio.play();
