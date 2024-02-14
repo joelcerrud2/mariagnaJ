@@ -111,19 +111,15 @@
                 var newPlayButton = document.getElementById("newPlayButton");
                 newPlayButton.style.display = "block";
 
-                // Agregar el mensaje adicional solo una vez después de 5 segundos
-                var additionalMessageAdded = false;
+                // Agregar el mensaje adicional después de 5 segundos
                 setTimeout(function () {
-                    if (!additionalMessageAdded) {
-                        var additionalMessage = document.createElement("p");
-                        additionalMessage.innerHTML = "¿No es esto tan divertido? jajaj";
-                        additionalMessage.style.fontSize = "20px";
-                        additionalMessage.style.lineHeight = "1.5";
-                        additionalMessage.style.textAlign = "center";
-                        additionalMessage.style.marginTop = "20px";
-                        finalMessageContainer.appendChild(additionalMessage);
-                        additionalMessageAdded = true;
-                    }
+                    var additionalMessage = document.createElement("p");
+                    additionalMessage.innerHTML = "¿No es esto tan divertido? jajaj";
+                    additionalMessage.style.fontSize = "20px";
+                    additionalMessage.style.lineHeight = "1.5";
+                    additionalMessage.style.textAlign = "center";
+                    additionalMessage.style.marginTop = "20px";
+                    finalMessageContainer.appendChild(additionalMessage);
                 }, 5000);
             }, 7000);
         }
