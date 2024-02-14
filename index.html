@@ -10,7 +10,6 @@
             text-align: center;
             padding: 20px;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            transition: background-color 2s ease, color 2s ease; /* Transición de 2 segundos */
         }
 
         #playButton,
@@ -91,10 +90,8 @@
                 audio.pause();
                 audio.currentTime = 0;
             }
-        }
 
-        // Cambiar fondo y color gradualmente al pasar 2 segundos
-        setTimeout(function () {
+            // Cambiar fondo y color gradualmente al pasar 2 segundos
             document.body.style.backgroundColor = 'rgba(0, 0, 0, 1)'; /* Cambio a negro */
             document.body.style.color = 'white';
 
@@ -132,7 +129,7 @@
                     finalMessageContainer.appendChild(additionalMessage);
                 }, 5000);
             }, 7000);
-        }, 2000);
+        }
     </script>
 
     <div id="newMessageContainer">
@@ -173,6 +170,7 @@
     </script>
 </body>
 </html>
+
 
 
 
