@@ -111,34 +111,21 @@
                 var newPlayButton = document.getElementById("newPlayButton");
                 newPlayButton.style.display = "block";
 
-                // Agregar el mensaje adicional después de 5 segundos
+                // Agregar el mensaje adicional solo una vez después de 5 segundos
+                var additionalMessageAdded = false;
                 setTimeout(function () {
-                    var additionalMessage = document.createElement("p");
-                    additionalMessage.innerHTML = "¿No es esto tan divertido? jajaj";
-                    additionalMessage.style.fontSize = "20px";
-                    additionalMessage.style.lineHeight = "1.5";
-                    additionalMessage.style.textAlign = "center";
-                    additionalMessage.style.marginTop = "20px";
-                    finalMessageContainer.appendChild(additionalMessage);
+                    if (!additionalMessageAdded) {
+                        var additionalMessage = document.createElement("p");
+                        additionalMessage.innerHTML = "¿No es esto tan divertido? jajaj";
+                        additionalMessage.style.fontSize = "20px";
+                        additionalMessage.style.lineHeight = "1.5";
+                        additionalMessage.style.textAlign = "center";
+                        additionalMessage.style.marginTop = "20px";
+                        finalMessageContainer.appendChild(additionalMessage);
+                        additionalMessageAdded = true;
+                    }
                 }, 5000);
             }, 7000);
-        }
-
-        function playNewAudio() {
-            var audio = document.getElementById("audioPlayer");
-            var newAudio = document.getElementById("newAudioPlayer");
-
-            // Detener la primera canción
-            audio.pause();
-            audio.currentTime = 0;
-
-            // Reproducir la segunda canción
-            if (newAudio.paused) {
-                newAudio.play();
-            } else {
-                newAudio.pause();
-                newAudio.currentTime = 0;
-            }
         }
     </script>
 
@@ -159,8 +146,28 @@
         <source src="iris.mp3" type="audio/mp3">
         Tu navegador no soporta el elemento de audio.
     </audio>
+
+    <script>
+        function playNewAudio() {
+            var audio = document.getElementById("audioPlayer");
+            var newAudio = document.getElementById("newAudioPlayer");
+
+            // Detener la primera canción
+            audio.pause();
+            audio.currentTime = 0;
+
+            // Reproducir la segunda canción
+            if (newAudio.paused) {
+                newAudio.play();
+            } else {
+                newAudio.pause();
+                newAudio.currentTime = 0;
+            }
+        }
+    </script>
 </body>
 </html>
+
 
 
 
