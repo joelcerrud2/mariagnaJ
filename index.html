@@ -71,7 +71,7 @@
         <img src="https://img.icons8.com/material-outlined/48/000000/circled-play--v2.png" alt="Reproducir">
     </button>
     <audio id="audioPlayer" loop>
-        <!-- Cambié la ruta a una ruta relativa -->
+        <!-- Ruta relativa al archivo cancion.mp3 -->
         <source src="cancion.mp3" type="audio/mp3">
         Tu navegador no soporta el elemento de audio.
     </audio>
@@ -93,7 +93,46 @@
             }
         }
 
-        // Resto del script sigue igual
+        // Cambiar fondo y color gradualmente al pasar 2 segundos
+        setTimeout(function () {
+            document.body.style.backgroundColor = 'rgba(0, 0, 0, 1)'; /* Cambio a negro */
+            document.body.style.color = 'white';
+
+            // Mostrar el primer mensaje de agradecimiento después de 2 segundos
+            setTimeout(function () {
+                var thanksTextContainer = document.getElementById("thanksTextContainer");
+                thanksTextContainer.style.opacity = 1;
+                thanksTextContainer.style.marginTop = 0;
+            }, 2000);
+
+            // Mostrar el segundo mensaje después de 2 segundos adicionales
+            setTimeout(function () {
+                var newMessageContainer = document.getElementById("newMessageContainer");
+                newMessageContainer.style.opacity = 1;
+                newMessageContainer.style.marginTop = 0;
+            }, 4000);
+
+            // Mostrar el tercer mensaje y el nuevo botón después de 3 segundos adicionales
+            setTimeout(function () {
+                var finalMessageContainer = document.getElementById("finalMessageContainer");
+                finalMessageContainer.style.opacity = 1;
+                finalMessageContainer.style.marginTop = 0;
+
+                var newPlayButton = document.getElementById("newPlayButton");
+                newPlayButton.style.display = "block";
+
+                // Agregar el mensaje adicional después de 5 segundos
+                setTimeout(function () {
+                    var additionalMessage = document.createElement("p");
+                    additionalMessage.innerHTML = "¿No es esto tan divertido? jajaj";
+                    additionalMessage.style.fontSize = "20px";
+                    additionalMessage.style.lineHeight = "1.5";
+                    additionalMessage.style.textAlign = "center";
+                    additionalMessage.style.marginTop = "20px";
+                    finalMessageContainer.appendChild(additionalMessage);
+                }, 5000);
+            }, 7000);
+        }, 2000);
     </script>
 
     <div id="newMessageContainer">
@@ -109,7 +148,7 @@
     </div>
 
     <audio id="newAudioPlayer" loop>
-        <!-- Cambié la ruta a una ruta relativa -->
+        <!-- Ruta relativa al archivo iris.mp3 -->
         <source src="iris.mp3" type="audio/mp3">
         Tu navegador no soporta el elemento de audio.
     </audio>
@@ -134,6 +173,7 @@
     </script>
 </body>
 </html>
+
 
 
 
